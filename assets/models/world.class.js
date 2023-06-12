@@ -2,6 +2,7 @@ class World{
   // Variable doesn´t need let or const in class
   ctx; // context (dt. Zusammenhang)
   canvas;
+  keyboard;
   character = new Character();
   enemies = [
     new PufferFish(),
@@ -18,16 +19,16 @@ class World{
     new BackgroundObject('../assets/img/3. Background/Legacy/Layers/2. Floor/L3.png', 0)
   ];
 
-  constructor(canvas){
+  constructor(canvas, keyboard){
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas; // stores the param in the variable
+    this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
   }
 
   draw(){
-    /**
-     * clear canvas
-     */
+    /** clear canvas*/
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     /** 
      * Fill canvas with objects
@@ -60,6 +61,28 @@ class World{
    * @param {object} movableObject - img, x, y, width, height
    */
   addToMap(movableObject){
+    if (movableObject.reflectObjects) {
+      this.ctx.save(); // save context settings
+      this.ctx.translate(movableObject.width, 0); // change img methode
+      this.ctx.scale(-1, 1); // scale( x, y), rotate x-axis
+      movableObject.x = movableObject.x * -1;
+    }
     this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+    // if change ctx reflect, undone reflection
+    if (movableObject.reflectObjects) {
+      this.ctx.restore();
+      movableObject.x = movableObject.x * -1;
+    };
+  }
+
+  reflectImgX(){
+    this.ctx.save(); // save context settings
+    this.ctx.translate(movableObject.width, 0); // change img methode
+    this.ctx.scale(-1, 1); // scale( x, y), rotate x-axis
+    movableObject.x = movableObject.x * -1;
+  }
+
+  setWorld(){
+    this.character.world = this;
   }
 }

@@ -7,6 +7,7 @@ class MovableObject{
   x = 100;
   y = 100;
   speed = 0.15;
+  reflectObjects = false;  
 
   /**
    * load model img
