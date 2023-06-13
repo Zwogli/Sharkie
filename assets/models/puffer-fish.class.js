@@ -21,16 +21,19 @@ class PufferFish extends MovableObject{ // extends (dt. erweitert)
   }
 
   animate(){
-    this.moveUp();
+    
+    setInterval(() => {
+      if(this.y < 420 && this.y > 10){
+        this.moveUp();
+      }else{
+        this.moveDown();
+      }
+    }, 1000 / 60);  // 60FPS  
     /** Swim animation
      * 
      */
     setInterval(() =>{
-      let i = this.currentImg % this.IMAGES_WALKING.length; // let i = 0 % 5; % (modulo) = mathematical rest
-      // (IMAGES_WALKING.lenght = 5) i = 0,1,2,3,4, 0,1,2,3,4, .... 
-      let path = this.IMAGES_WALKING[i];
-      this.img = this.imgCache[path];
-      this.currentImg++;
+      this.playAnimation(this.IMAGES_WALKING)
     }, 80);
   }
 }

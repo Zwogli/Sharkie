@@ -3,43 +3,9 @@ class World{
   ctx; // context (dt. Zusammenhang)
   canvas;
   keyboard;
-  character = new Character();
-  enemies = [
-    new PufferFish(),
-    new PufferFish(),
-    new PufferFish(),
-  ];
-  bgLights = [
-    new BgLight(),
-  ];
-  backgroundObjects = [
-    new BackgroundObject('../assets/img/3. Background/Layers/5. Water/L1.png', -720),
-    new BackgroundObject('../assets/img/3. Background/Layers/3.Fondo 1/L2.png', -720),
-    new BackgroundObject('../assets/img/3. Background/Layers/4.Fondo 2/L2.png', -720),
-    new BackgroundObject('../assets/img/3. Background/Layers/2. Floor/L2.png', -720),
-
-    new BackgroundObject('../assets/img/3. Background/Layers/5. Water/L.png', 0),
-    new BackgroundObject('../assets/img/3. Background/Layers/3.Fondo 1/L1.png', 0),
-    new BackgroundObject('../assets/img/3. Background/Layers/4.Fondo 2/L1.png', 0),
-    new BackgroundObject('../assets/img/3. Background/Layers/2. Floor/L1.png', 0),
-
-    new BackgroundObject('../assets/img/3. Background/Layers/5. Water/L1.png', 720),
-    new BackgroundObject('../assets/img/3. Background/Layers/3.Fondo 1/L2.png', 720),
-    new BackgroundObject('../assets/img/3. Background/Layers/4.Fondo 2/L2.png', 720),
-    new BackgroundObject('../assets/img/3. Background/Layers/2. Floor/L2.png', 720),
-
-    new BackgroundObject('../assets/img/3. Background/Layers/5. Water/L.png', 720 * 2),
-    new BackgroundObject('../assets/img/3. Background/Layers/3.Fondo 1/L1.png', 720 * 2),
-    new BackgroundObject('../assets/img/3. Background/Layers/4.Fondo 2/L1.png', 720 * 2),
-    new BackgroundObject('../assets/img/3. Background/Layers/2. Floor/L1.png', 720 * 2),
-    
-    new BackgroundObject('../assets/img/3. Background/Layers/5. Water/L1.png', 720 * 3),
-    new BackgroundObject('../assets/img/3. Background/Layers/3.Fondo 1/L2.png', 720 * 3),
-    new BackgroundObject('../assets/img/3. Background/Layers/4.Fondo 2/L2.png', 720 * 3),
-    new BackgroundObject('../assets/img/3. Background/Layers/2. Floor/L2.png', 720 * 3),
-    
-  ];
   camera_x = 0;
+  character = new Character();
+  level = level1;
 
   constructor(canvas, keyboard){
     this.ctx = canvas.getContext('2d');
@@ -59,9 +25,9 @@ class World{
      * Fill canvas with objects
      * addObjectToMap() => (forEach) render array 
      */
-    this.addObjectToMap(this.backgroundObjects);
-    this.addObjectToMap(this.bgLights);
-    this.addObjectToMap(this.enemies);
+    this.addObjectToMap(this.level.backgroundObjects);
+    this.addObjectToMap(this.level.bgLights);
+    this.addObjectToMap(this.level.enemies);
     // addToMap() => render single object
     this.addToMap(this.character);
 

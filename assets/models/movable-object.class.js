@@ -30,19 +30,28 @@ class MovableObject{
     });
   }
 
-  moveRight(param){
-    console.log('moving right');
+  moveRight(){
+    this.x += this.speed;
+    this.reflectObjects = false;
   }
 
   moveLeft(){
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);  // 60FPS  
+    this.x -= this.speed;
   }
 
   moveUp(){
-    setInterval(() => {
-      this.y += this.speed;
-    }, 1000 / 60);  // 60FPS  
+    this.y -= this.speed;
+  }
+
+  moveDown(){
+    this.y += this.speed;
+  }
+
+  playAnimation(imgs){
+    let i = this.currentImg % this.IMAGES_WALKING.length; // let i = 0 % 6; % (modulo) = mathematical rest
+    // (IMAGES_WALKING.lenght = 6) i = 0,1,2,3,4,5, 0,1,2,3,4,5, .... 
+    let path = imgs[i];
+    this.img = this.imgCache[path];
+    this.currentImg++;
   }
 }

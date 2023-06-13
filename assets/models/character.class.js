@@ -13,6 +13,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
     '../assets/img/1.Sharkie/3.Swim/6.png',
   ];
   world;
+  swim_sound = new Audio('../assets/audio/swim.mp3');
 
   /** Only Methods need super() before.*/
   constructor(){
@@ -22,23 +23,27 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   }
 
   animate(){
+    this.swim_sound.pause();
     /** moving */
     setInterval(() => {
-      if(this.world.keyboard.RIGHT){
-          this.x += this.speed;
-          this.reflectObjects = false;
+      if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x){
+          this.moveRight();
+          this.swim_sound.play();
         };
-      if(this.world.keyboard.LEFT){
-        this.x -= this.speed;
-        this.reflectObjects = true;
+      if(this.world.keyboard.LEFT && this.x > 0){
+        this.moveLeft();
+        this.reflectObjects = true; 
+        this.swim_sound.play();
       };
       if(this.world.keyboard.UP){
-        this.y -= this.speed;
+        this.moveUp();
+        this.swim_sound.play();
       };
       if(this.world.keyboard.DOWN){
-        this.y += this.speed;
+        this.moveDown();
+        this.swim_sound.play();
       };
-      this.world.camera_x = -this.x;
+      this.world.camera_x = -this.x + 100; // camera position on charakter
     },1000 / 60);
 
     /** Walk animation */
@@ -48,11 +53,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
         this.world.keyboard.UP ||
         this.world.keyboard.down
         ){
-        let i = this.currentImg % this.IMAGES_WALKING.length; // let i = 0 % 6; % (modulo) = mathematical rest
-        // (IMAGES_WALKING.lenght = 6) i = 0,1,2,3,4,5, 0,1,2,3,4,5, .... 
-        let path = this.IMAGES_WALKING[i];
-        this.img = this.imgCache[path];
-        this.currentImg++;
+        this.playAnimation(this.IMAGES_WALKING)
       }
     }, 100);
   }
