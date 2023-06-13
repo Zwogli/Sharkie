@@ -38,6 +38,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
       if(this.world.keyboard.DOWN){
         this.y += this.speed;
       };
+      this.world.camera_x = -this.x;
     },1000 / 60);
 
     /** Walk animation */

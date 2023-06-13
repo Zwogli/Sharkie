@@ -18,6 +18,7 @@ class World{
     new BackgroundObject('../assets/img/3. Background/Legacy/Layers/4.Fondo 2/L3.png', 0),
     new BackgroundObject('../assets/img/3. Background/Legacy/Layers/2. Floor/L3.png', 0)
   ];
+  camera_x = 0;
 
   constructor(canvas, keyboard){
     this.ctx = canvas.getContext('2d');
@@ -30,6 +31,9 @@ class World{
   draw(){
     /** clear canvas*/
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.translate(this.camera_x, 0); // translate (dt. umsetzen)
+
     /** 
      * Fill canvas with objects
      * addObjectToMap() => (forEach) render array 
@@ -39,6 +43,9 @@ class World{
     this.addObjectToMap(this.enemies);
     // addToMap() => render single object
     this.addToMap(this.character);
+
+
+    this.ctx.translate(-this.camera_x, 0); // reset translate
     
     // keeps calling the draw function
     let self = this;
