@@ -56,17 +56,28 @@ class World{
    */
   addToMap(movableObject){
     if (movableObject.reflectObjects) {
-      this.ctx.save(); // save context settings
-      this.ctx.translate(movableObject.width, 0); // change img methode
-      this.ctx.scale(-1, 1); // scale( x, y), rotate x-axis
-      movableObject.x = movableObject.x * -1;
+      this.flipImg(movableObject);
     }
-    this.ctx.drawImage(movableObject.img, movableObject.x, movableObject.y, movableObject.width, movableObject.height);
+
+    movableObject.draw(this.ctx);
+    movableObject.drawFrame(this.ctx);
+
     // if change ctx reflect, undone reflection
     if (movableObject.reflectObjects) {
-      this.ctx.restore();
-      movableObject.x = movableObject.x * -1;
+      this.flipImgBack(movableObject);
     };
+  }
+
+  flipImg(movableObject){
+    this.ctx.save(); // save context settings
+    this.ctx.translate(movableObject.width, 0); // change img methode
+    this.ctx.scale(-1, 1); // scale( x, y), rotate x-axis
+    movableObject.x = movableObject.x * -1;
+  }
+
+  flipImgBack(movableObject){
+    this.ctx.restore();
+    movableObject.x = movableObject.x * -1;
   }
 
   reflectImgX(){

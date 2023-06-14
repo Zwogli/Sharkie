@@ -30,6 +30,29 @@ class MovableObject{
     });
   }
 
+  draw(ctx){
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrame(ctx){
+    // select Oject to draw frame
+    if (this instanceof Character || this instanceof PufferFish) {
+      ctx.beginPath();
+      ctx.lineWidth = '5';
+      ctx.strokeStyle = 'blue';
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    }
+  }
+
+  isColliding (movableObject) {
+    return  (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) && 
+            (this.Y + this.offsetY + this.height) >= movableObject.Y &&
+            (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) && 
+            movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+  
+  }
+
   moveRight(){
     this.x += this.speed;
     this.reflectObjects = false;
