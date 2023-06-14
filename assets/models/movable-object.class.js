@@ -7,7 +7,8 @@ class MovableObject{
   x = 100;
   y = 100;
   speed = 0.15;
-  reflectObjects = false;  
+  reflectObjects = false;
+  energy = 100;  
 
   /**
    * load model img
@@ -45,12 +46,24 @@ class MovableObject{
     }
   }
 
-  isColliding (movableObject) {
-    return  (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) && 
-            (this.Y + this.offsetY + this.height) >= movableObject.Y &&
-            (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) && 
-            movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+  isColliding (obj) {
+    return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
+            (this.y + this.height) >= obj.y && // orig. (this.y + this.offsetY + this.height) >= obj.y &&
+            (this.y) <= (obj.y + obj.height) // orig. (this.y + this.offsetY) <= (obj.y + obj.height) &&
+            //obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
   
+  }
+
+  hit(){
+    this.energy -= 25;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
+    console.log('colliding', this.energy);
+  }
+
+  isDead(){
+    return this.energy == 0;
   }
 
   moveRight(){
