@@ -8,7 +8,9 @@ class MovableObject{
   y = 100;
   speed = 0.15;
   reflectObjects = false;
-  energy = 100;  
+  
+  energy = 100;
+  lastHit = 0;
 
   /**
    * load model img
@@ -58,8 +60,16 @@ class MovableObject{
     this.energy -= 25;
     if (this.energy < 0) {
       this.energy = 0;
+    }else{
+      this.lastHit = new Date().getTime(); // time as number, since 01.01.1970
     }
     console.log('colliding', this.energy);
+  }
+
+  isHurt(){
+    let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
+    timepassed = timepassed / 1000; // difference in seconds
+    return timepassed < 1; // returns true if hit in the last 5s
   }
 
   isDead(){
@@ -84,7 +94,7 @@ class MovableObject{
   }
 
   playAnimation(imgs){
-    let i = this.currentImg % this.IMAGES_WALKING.length; // let i = 0 % 6; % (modulo) = mathematical rest
+    let i = this.currentImg % imgs.length; // let i = 0 % 6; % (modulo) = mathematical rest
     // (IMAGES_WALKING.lenght = 6) i = 0,1,2,3,4,5, 0,1,2,3,4,5, .... 
     let path = imgs[i];
     this.img = this.imgCache[path];
