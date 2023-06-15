@@ -4,7 +4,10 @@ class World{
   canvas;
   keyboard;
   camera_x = 0;
+
+  statusBar = new StatusBar();
   character = new Character();
+  
   level = level1;
 
   constructor(canvas, keyboard){
@@ -21,17 +24,21 @@ class World{
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0); // translate (dt. umsetzen)
-
-    /** 
-     * Fill canvas with objects
-     * addObjectToMap() => (forEach) render array 
-     */
     this.addObjectToMap(this.level.backgroundObjects);
+
+    /** Fill canvas with objects
+    * addObjectToMap() => (forEach) render array 
+    */
     this.addObjectToMap(this.level.bgLights);
     this.addObjectToMap(this.level.enemies);
+    
+    this.ctx.translate(-this.camera_x, 0); // camera back
+    //* space for fix objects
+    this.addToMap(this.statusBar);
+    this.ctx.translate(this.camera_x, 0); // camera forward
+   
     // addToMap() => render single object
     this.addToMap(this.character);
-
 
     this.ctx.translate(-this.camera_x, 0); // reset translate
     
@@ -97,6 +104,7 @@ class World{
       this.level.enemies.forEach((enemy) => {
         if(this.character.isColliding(enemy) ){
           this.character.hit();
+          this.statusBar.setPercentage(this.character.energy);
         }
       });
     }, 1000);

@@ -4,17 +4,6 @@ class MovableObject extends DrawableObject{
   energy = 100;
   lastHit = 0;
 
-  drawFrame(ctx){
-    // select Oject to draw frame
-    if (this instanceof Character || this instanceof PufferFish) {
-      ctx.beginPath();
-      ctx.lineWidth = '5';
-      ctx.strokeStyle = 'blue';
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
-
   isColliding (obj) {
     return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
             (this.y + this.height) >= obj.y && // orig. (this.y + this.offsetY + this.height) >= obj.y &&
