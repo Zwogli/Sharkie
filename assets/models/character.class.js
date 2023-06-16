@@ -54,16 +54,17 @@ class Character extends MovableObject{ // extends (dt. erweitert)
         };
       if(this.world.keyboard.LEFT && this.x > 0){
         this.moveLeft();
-        this.reflectObjects = true; 
+        this.reflectObjects = true;
         this.swim_sound.play();
       };
       if(this.world.keyboard.UP){
         this.moveUp();
         this.swim_sound.play();
       };
-      if(this.world.keyboard.DOWN){
+      if(this.world.keyboard.DOWN && this.y < this.world.level.level_end_y){
         this.moveDown();
         this.swim_sound.play();
+        console.log(this.y);
       };
 
       this.world.camera_x = -this.x + 100; // camera position on charakter

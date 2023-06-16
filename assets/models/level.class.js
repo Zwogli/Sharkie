@@ -2,7 +2,8 @@ class Level{
   enemies;
   bgLights;
   backgroundObjects;
-  level_end_x = 2200;
+  level_end_x = 720 * 6;
+  level_end_y = 400;
 
   constructor(lvlEnemies, lvlBgLights, lvlBackgroundObjects){
     this.enemies = lvlEnemies;
