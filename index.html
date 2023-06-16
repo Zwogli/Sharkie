@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sharkie</title>
+<!-- favicon -->
+  <link rel="icon" type="image/vnd.microsoft.icon" href="assets/img/icon/sharky.ico"/>
 <!-- Style -->
   <link rel="stylesheet" href="assets/css/style.css">
 <!-- Models -->
@@ -26,11 +28,19 @@
   <script src="assets/js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body class="d-center-center" onload="init()">
 
-  <h1>Sharkie</h1>
+  <main class="background d-center-center">
+    <img class="background-img" src="../../assets/img/3.%20Background/Light/full.png" alt="ozean ground">
 
-  <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="game d-center-center">
+      <h1>Sharky</h1>
+    
+      <canvas id="canvas" width="720" height="480"></canvas>
+    </div>
+  
+  </main>
+
   
 </body>
 </html>

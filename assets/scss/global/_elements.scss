@@ -1,0 +1,20 @@
+.background{
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100dvh;
+  width: 100dvw;
+  
+  &-img{
+    height: 100dvh;
+    width: 100dvw;
+    object-fit: cover;
+    opacity: .7;
+    filter: blur(8px);
+  }
+}
+
+.game{
+  position: absolute;
+  flex-direction: column;
+}
