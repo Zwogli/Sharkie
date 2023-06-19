@@ -1,14 +1,4 @@
 class Character extends MovableObject{ // extends (dt. erweitert)
-  x = 100;
-  offsetX = 35;
-  y = 50;
-  offsetY = 115;
-  width = 200;
-  offsetWidth = -70;
-  height = 250;
-  offsetHeigth = -160;
-
-  speed = 25; // 5
   IMAGES_WALKING = [
     '../assets/img/1.Sharkie/3.Swim/1.png',
     '../assets/img/1.Sharkie/3.Swim/2.png',
@@ -37,38 +27,65 @@ class Character extends MovableObject{ // extends (dt. erweitert)
     '../assets/img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
     '../assets/img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
   ];
+  IMAGES_ATTACK = [
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/1.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/2.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/3.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/4.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/5.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/6.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/7.png',
+    '../assets/img/1.Sharkie/4.Attack/Fin-slap/8.png',
+  ];
+
+  SOUND_SWIM = new Audio('../assets/audio/swim.mp3');
+  
+  x = 100;
+  offsetX = 35;
+  y = 50;
+  offsetY = 115;
+  width = 200;
+  offsetWidth = -70;
+  height = 250;
+  offsetHeigth = -160;
+
+  speed = 25; // 5
   world;
-  swim_sound = new Audio('../assets/audio/swim.mp3');
 
   /** Only Methods need super() before.*/
   constructor(){
     super().loadImg('../assets/img/1.Sharkie/3.Swim/1.png'); // super() calls the extends MovableObject with the function loadImg()
-    this.loadImgs(this.IMAGES_WALKING);
-    this.loadImgs(this.IMAGES_DEAD);
-    this.loadImgs(this.IMAGES_HURT);
+    this.loadAllImgs();
     this.animate();
   }
 
+  loadAllImgs(){
+    this.loadImgs(this.IMAGES_WALKING);
+    this.loadImgs(this.IMAGES_DEAD);
+    this.loadImgs(this.IMAGES_HURT);
+    this.loadImgs(this.IMAGES_ATTACK);
+  }
+
   animate(){
-    this.swim_sound.pause();
+    this.SOUND_SWIM.pause();
     /** moving */
     setInterval(() => {
       if(this.limitLevelWidth()){
           this.moveRight();
-          this.swim_sound.play();
+          this.SOUND_SWIM.play();
         };
       if(this.limitLevelX()){
         this.moveLeft();
         this.reflectObjects = true;
-        this.swim_sound.play();
+        this.SOUND_SWIM.play();
       };
       if(this.limitLevelY()){
         this.moveUp();
-        this.swim_sound.play();
+        this.SOUND_SWIM.play();
       };
       if(this.limitLevelHeight()){
         this.moveDown();
-        this.swim_sound.play();
+        this.SOUND_SWIM.play();
       };
 
       this.world.camera_x = -this.x + 100; // camera position on charakter
@@ -76,20 +93,21 @@ class Character extends MovableObject{ // extends (dt. erweitert)
 
     /** Walk animation */
     setInterval(() =>{
-
       if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD)
+        this.playAnimation(this.IMAGES_DEAD);
       }else if(this.isHurt()){
-        this.playAnimation(this.IMAGES_HURT)
+        this.playAnimation(this.IMAGES_HURT);
       }else if(
         this.world.keyboard.RIGHT ||  
         this.world.keyboard.LEFT ||
         this.world.keyboard.UP ||
         this.world.keyboard.down
         ){
-          this.playAnimation(this.IMAGES_WALKING)
+        this.playAnimation(this.IMAGES_WALKING);
+      }else if(this.world.keyboard.SPACE){
+        //! todo
+        this.playAnimation(this.IMAGES_ATTACK);
       }
-        
     }, 100);
   }
 

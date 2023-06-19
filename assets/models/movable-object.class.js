@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject{
   reflectObjects = false;
   energy = 100;
   lastHit = 0;
+  attack = 0;
 
   isColliding (obj) {
     return  (this.x + this.offsetX + this.width + this.offsetWidth) >= obj.x && this.x <= (obj.x + obj.width) && 
@@ -23,7 +24,7 @@ class MovableObject extends DrawableObject{
 
   isHurt(){
     let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
-    timepassed = timepassed / 1000; // difference in seconds
+    timepassed = timepassed / 500; // difference in seconds
     return timepassed < 1; // returns true if hit in the last 5s
   }
 
