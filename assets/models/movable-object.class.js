@@ -18,7 +18,6 @@ class MovableObject extends DrawableObject{
     }else{
       this.lastHit = new Date().getTime(); // time as number, since 01.01.1970
     }
-    console.log('colliding', this.energy);
   }
 
   isHurt(){

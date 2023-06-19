@@ -53,23 +53,22 @@ class Character extends MovableObject{ // extends (dt. erweitert)
     this.swim_sound.pause();
     /** moving */
     setInterval(() => {
-      if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x){
+      if(this.limitLevelWidth()){
           this.moveRight();
           this.swim_sound.play();
         };
-      if(this.world.keyboard.LEFT && this.x > 0){
+      if(this.limitLevelX()){
         this.moveLeft();
         this.reflectObjects = true;
         this.swim_sound.play();
       };
-      if(this.world.keyboard.UP){
+      if(this.limitLevelY()){
         this.moveUp();
         this.swim_sound.play();
       };
-      if(this.world.keyboard.DOWN && this.y < this.world.level.level_end_y){
+      if(this.limitLevelHeight()){
         this.moveDown();
         this.swim_sound.play();
-        console.log(this.y);
       };
 
       this.world.camera_x = -this.x + 100; // camera position on charakter
@@ -92,6 +91,19 @@ class Character extends MovableObject{ // extends (dt. erweitert)
       }
         
     }, 100);
+  }
+
+  limitLevelX(){
+    return this.world.keyboard.LEFT && this.x > 0;
+  }
+  limitLevelWidth(){
+    return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+  }
+  limitLevelY(){
+    return this.world.keyboard.UP && this.y + this.offsetY > 15;
+  }
+  limitLevelHeight(){
+    return this.world.keyboard.DOWN && this.y + this.height + this.offsetHeigth < this.world.level.level_end_y; 
   }
 
   jump(){
