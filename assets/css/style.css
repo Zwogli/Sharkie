@@ -30,9 +30,10 @@ h1 {
   src: url("../fonts/bangers/bangers-v21-latin-regular.woff2") format("woff2"), url("../fonts/bangers/bangers-v21-latin-regular.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
 }
 .background {
-  position: relative;
-  top: 0;
-  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 100dvh;
   width: 100dvw;
 }
@@ -42,16 +43,58 @@ h1 {
   -o-object-fit: cover;
      object-fit: cover;
   opacity: 0.7;
-  filter: blur(8px);
+  filter: blur(4px);
 }
 
 .game {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
-
-.d-center-center {
+.game-title {
+  position: relative;
+  margin-bottom: 25px;
+}
+.game-canvas {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 720px;
+  height: 480px;
+}
+.game-canvas-frame {
+  display: block;
+}
+.game-canvas-canvas {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  transform: translate(12px, 23px);
+}
+
+.canvas_w-h {
+  width: 910px;
+  height: 760px;
+}
+
+@media (max-width: 920px) {
+  .game-title {
+    margin-bottom: 12px;
+  }
+  .game-canvas-frame {
+    display: none;
+  }
+  .game-canvas-canvas {
+    transform: translate(0px, 0px);
+  }
+}
+.d-none {
+  display: none;
+}
+
+.opacity-0 {
+  opacity: 0;
 }

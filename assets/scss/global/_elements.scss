@@ -1,7 +1,8 @@
 .background{
-  position: relative;
-  top: 0;
-  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 100dvh;
   width: 100dvw;
   
@@ -10,11 +11,51 @@
     width: 100dvw;
     object-fit: cover;
     opacity: .7;
-    filter: blur(8px);
+    filter: blur(4px);
   }
 }
 
 .game{
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  &-title{
+    position: relative;
+    margin-bottom: 25px;
+  }
+  &-canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 720px;
+    height: 480px;
+    &-frame{
+      display: block;
+    }
+    &-canvas{
+      display: block;
+      z-index: 1;
+      position: absolute;
+      transform: translate(12px, 23px);
+    }
+  }
+}
+.canvas_w-h{
+  width: 910px;
+  height: 760px;
+}
+
+@media (max-width: 920px){
+  .game-title{
+    margin-bottom: 12px;
+  }
+  .game-canvas-frame{
+    display: none;
+  }
+  .game-canvas-canvas{
+    transform: translate(0px, 0px);
+  }
 }

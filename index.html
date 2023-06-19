@@ -28,15 +28,17 @@
   <script src="assets/js/game.js"></script>
 </head>
 
-<body class="d-center-center" onload="init()">
+<body onload="init()">
 
-  <main class="background d-center-center">
-    <img class="background-img" src="../../assets/img/3.%20Background/Light/full.png" alt="ozean ground">
-
-    <div class="game d-center-center">
-      <h1>Sharky</h1>
+  <main class="background">
+    <img class="background-img" src="../../assets/img/backgrounds/underwater-landscape.jpg" alt="ozean ground">
     
-      <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="game">
+      <h1 class="game-title">Sharky</h1>
+      <div class="game-canvas">
+        <canvas id="canvas" class="game-canvas-canvas" width="720" height="480"></canvas>
+        <img class="game-canvas-frame canvas_w-h " src="assets/img/canvas/canvas_frame.png" alt="canvas frame">
+      </div>
     </div>
   
   </main>
