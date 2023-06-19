@@ -1,8 +1,12 @@
 class DrawableObject {
   x = 100;
+  offsetX = 0;
   y = 100;
+  offsetY = 0;
   width = 100;
+  offsetWidth = 0;
   height = 100;
+  offsetHeigth = 0;
   
   img;
   imgCache = [];
@@ -37,7 +41,9 @@ class DrawableObject {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
-        ctx.rect(this.x, this.y, this.width, this.height);
+        // define hit-box, rect()
+        ctx.rect(this.x + this.offsetX, this.y + this.offsetY, 
+          this.width + this.offsetWidth, this.height + this.offsetHeigth);
         ctx.stroke();
       }
     }

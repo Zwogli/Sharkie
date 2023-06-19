@@ -1,8 +1,13 @@
 class Character extends MovableObject{ // extends (dt. erweitert)
   x = 100;
+  offsetX = 35;
   y = 50;
+  offsetY = 115;
   width = 200;
+  offsetWidth = -70;
   height = 250;
+  offsetHeigth = -160;
+
   speed = 50; // 5
   IMAGES_WALKING = [
     '../assets/img/1.Sharkie/3.Swim/1.png',
