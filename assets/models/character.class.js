@@ -8,7 +8,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   height = 250;
   offsetHeigth = -160;
 
-  speed = 50; // 5
+  speed = 25; // 5
   IMAGES_WALKING = [
     '../assets/img/1.Sharkie/3.Swim/1.png',
     '../assets/img/1.Sharkie/3.Swim/2.png',
