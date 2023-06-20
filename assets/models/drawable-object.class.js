@@ -1,11 +1,11 @@
 class DrawableObject {
   x = 100;
-  offsetX = 0;
   y = 100;
-  offsetY = 0;
   width = 100;
-  offsetWidth = 0;
   height = 100;
+  offsetX = 0;
+  offsetY = 0;
+  offsetWidth = 0;
   offsetHeigth = 0;
   
   img;

@@ -6,6 +6,7 @@ class World{
   camera_x = 0;
 
   statusBar = new StatusBar();
+  fullscreen = new Fullscreen();
   character = new Character();
   
   level = level1;

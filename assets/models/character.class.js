@@ -36,6 +36,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
     './assets/img/1.Sharkie/4.Attack/Fin-slap/6.png',
     './assets/img/1.Sharkie/4.Attack/Fin-slap/7.png',
     './assets/img/1.Sharkie/4.Attack/Fin-slap/8.png',
+    './assets/img/1.Sharkie/4.Attack/Fin-slap/1.png',
   ];
 
   SOUND_SWIM = new Audio('./assets/audio/swim.mp3');
@@ -112,21 +113,21 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   }
 
   isAttacking(){
+    let attackingInterval = setInterval(() => {
+      this.playAnimation(this.IMAGES_ATTACK);
+      if(this.currentImg == this.IMAGES_ATTACK.length){
+        clearInterval(attackingInterval);
+        this.currentImg = 0;
+      }
+    }, 100);
+    
     if(!this.attackFin){
       this.currentImg = 0;
       this.attackFin = true;
     }
-      setInterval(() => {
-        this.playAnimation(this.IMAGES_ATTACK);
-        if(this.currentImg == 7){
-        this.stopAttacking();
-        this.currentImg = 0;
-        }
-      }, 100);
-  }
+    attackingInterval;
 
-  stopAttacking(){
-    clearInterval(this.attackFin);
+    
   }
 
   /**Level limit
