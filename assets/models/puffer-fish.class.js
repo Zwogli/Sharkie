@@ -3,15 +3,15 @@ class PufferFish extends MovableObject{ // extends (dt. erweitert)
   height = 65;
   swimDirection;
   IMAGES_WALKING = [
-    '../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
-    '../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
-    '../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim3.png',
-    '../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
-    '../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
+    './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
+    './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
+    './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim3.png',
+    './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
+    './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
   ];
 
   constructor(){
-    super().loadImg('../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png'); // super() calls the extends MovableObject with the function loadImg()
+    super().loadImg('./assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png'); // super() calls the extends MovableObject with the function loadImg()
     this.loadImgs(this.IMAGES_WALKING);
 
     this.x = 400 + Math.random() * (720 * 3); // Math.random() generates a number beetwen 0 - 1, minMax x-axis = 200 - 700

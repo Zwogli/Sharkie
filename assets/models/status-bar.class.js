@@ -1,11 +1,11 @@
 class StatusBar extends DrawableObject {
   IMAGES = [
-    '../assets/img/4. Marcadores/orange/0_  copia.png',
-    '../assets/img/4. Marcadores/orange/20_ copia 2.png',
-    '../assets/img/4. Marcadores/orange/40_  copia.png',
-    '../assets/img/4. Marcadores/orange/60_  copia.png',  // 3
-    '../assets/img/4. Marcadores/orange/80_  copia.png',  // 4
-    '../assets/img/4. Marcadores/orange/100_  copia.png', // 5
+    './assets/img/4. Marcadores/orange/0_  copia.png',
+    './assets/img/4. Marcadores/orange/20_ copia 2.png',
+    './assets/img/4. Marcadores/orange/40_  copia.png',
+    './assets/img/4. Marcadores/orange/60_  copia.png',  // 3
+    './assets/img/4. Marcadores/orange/80_  copia.png',  // 4
+    './assets/img/4. Marcadores/orange/100_  copia.png', // 5
   ];
   percentage = 100;
 
