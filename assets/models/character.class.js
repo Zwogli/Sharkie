@@ -54,6 +54,8 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   attackFin = false;
   isDeath = false;
   world;
+  moving = setInterval(() => this.moveCharacter() ,1000 / 60);
+  moveset = setInterval(() => this.movesetCharacter() ,100);
 
   /** Only Methods need super() before.*/
   constructor(){
@@ -72,63 +74,61 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   animate(){
     this.SOUND_SWIM.pause();
     /** moving */
-    setInterval(() => {
-      if(!this.isDeath){  // stop moving
-        if(this.limitLevelWidth()){
-            this.moveRight();
-            this.SOUND_SWIM.play();
-          };
-        if(this.limitLevelX()){
-          this.moveLeft();
-          this.reflectObjects = true;
-          this.SOUND_SWIM.play();
-        };
-        if(this.limitLevelY()){
-          this.moveUp();
-          this.SOUND_SWIM.play();
-        };
-        if(this.limitLevelHeight()){
-          this.moveDown();
-          this.SOUND_SWIM.play();
-        };
-      }
-
-      this.world.camera_x = -this.x + 100; // camera position on charakter
-    },1000 / 60);
+    this.moving;
 
     /** All Movesets */
-    setInterval(() =>{
-      if (this.isDead()) {
-        console.log(this.isDead())
-        this.isDeath = true;
-        this.playAnimation(this.IMAGES_DEAD);
-      }else if(this.isHurt()){
-        this.playAnimation(this.IMAGES_HURT);
-      }else if(this.inputMoving()){
-        this.playAnimation(this.IMAGES_WALKING);
-      }else if(this.inputAttacking()){
-          this.isAttacking();
-      }
-    }, 100);
+    this.moveset
   }
 
-  isAttacking(){
-    let attackingInterval = setInterval(() => {
-      this.playAnimation(this.IMAGES_ATTACK);
-      if(this.currentImg == this.IMAGES_ATTACK.length){
-        clearInterval(attackingInterval);
-        this.currentImg = 0;
-      }
-    }, 100);
-    
-    if(!this.attackFin){
-      this.currentImg = 0;
-      this.attackFin = true;
+  moveCharacter(){
+    if(!this.isDeath){  // stop moving
+      if(this.limitLevelWidth()){
+          this.moveRight();
+          this.SOUND_SWIM.play();
+        };
+      if(this.limitLevelX()){
+        this.moveLeft();
+        this.reflectObjects = true;
+        this.SOUND_SWIM.play();
+      };
+      if(this.limitLevelY()){
+        this.moveUp();
+        this.SOUND_SWIM.play();
+      };
+      if(this.limitLevelHeight()){
+        this.moveDown();
+        this.SOUND_SWIM.play();
+      };
     }
-    attackingInterval;
-
-    
+    this.world.camera_x = -this.x + 100; // camera position on charakter
   }
+
+  movesetCharacter(){
+    if (this.isDead()) {
+      console.log(this.isDead())
+      this.isDeath = true;
+      this.playAnimation(this.IMAGES_DEAD);
+    }else if(this.isHurt()){
+      this.playAnimation(this.IMAGES_HURT);
+    }else if(this.inputMoving()){
+      this.playAnimation(this.IMAGES_WALKING);
+    }else if(this.inputFinAttack()){
+        this.isAttackingFin(this.IMAGES_ATTACK);
+        
+    }
+  }
+
+  isAttackingFin(IMG){
+   if(!this.attackFin){
+    this.currentImg = 0;
+    this.attackFin = true;
+   }
+   this.playAnimation(IMG);
+   if(this.currentImg == IMG.length) {
+         this.attackFin = false;
+     } 
+  }
+  
 
   /**Level limit
    * 
@@ -154,7 +154,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
   inputMoving(){
     return this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.down;
   }
-  inputAttacking(){
-    return this.world.keyboard.SPACE;
+  inputFinAttack(){
+    return this.world.keyboard.SPACE || this.attackFin == true;
   }
 }

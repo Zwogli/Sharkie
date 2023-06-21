@@ -5,9 +5,9 @@ IMAGE = './assets/img/icon/fullscreen.png';
 constructor(){
   super();
   this.loadImg(this.IMAGE);
-  this.x = 100;
-  this.y = 300;
-  this.width = 150;
-  this.height = 150;
+  this.x = 400;
+  this.y = 10;
+  this.width = 48;
+  this.height = 48;
 }
 }

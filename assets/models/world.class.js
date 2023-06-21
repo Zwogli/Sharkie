@@ -39,6 +39,7 @@ class World{
     this.ctx.translate(this.camera_x, 0); // camera forward
    
     // addToMap() => render single object
+    this.addToMap(this.fullscreen);
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0); // reset translate

@@ -2,7 +2,7 @@ class MovableObject extends DrawableObject{
   speed = 0.15;
   swimDirection;
   reflectObjects = false;
-  energy = 100;
+  energy = 100;3
   lastHit = 0;
 
   isColliding (obj) {
@@ -55,4 +55,11 @@ class MovableObject extends DrawableObject{
     this.img = this.imgCache[path];
     this.currentImg++;
   }
+
+  // playSingleAnimation(imgs){
+  //   let i = this.currentImg % imgs.length;
+  //   let path = imgs[i];
+  //   this.img = this.imgCache[path];
+  //   this.currentImg++;
+  // }
 }
