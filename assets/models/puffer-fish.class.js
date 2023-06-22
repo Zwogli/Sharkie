@@ -1,7 +1,4 @@
 class PufferFish extends MovableObject{ // extends (dt. erweitert)
-  width = 80;
-  height = 65;
-  swimDirection;
   IMAGES_WALKING = [
     './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
     './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
@@ -10,6 +7,9 @@ class PufferFish extends MovableObject{ // extends (dt. erweitert)
     './assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
   ];
 
+  width = 80;
+  height = 65;
+  
   constructor(){
     super().loadImg('./assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png'); // super() calls the extends MovableObject with the function loadImg()
     this.loadImgs(this.IMAGES_WALKING);

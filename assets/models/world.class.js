@@ -6,6 +6,7 @@ class World{
   camera_x = 0;
 
   statusBar = new StatusBar();
+  coinBar = new CoinBar();
   fullscreen = new Fullscreen();
   character = new Character();
   
@@ -36,10 +37,11 @@ class World{
     this.ctx.translate(-this.camera_x, 0); // camera back
     //* space for fix objects
     this.addToMap(this.statusBar);
+    this.addToMap(this.coinBar);
+    this.addToMap(this.fullscreen);
     this.ctx.translate(this.camera_x, 0); // camera forward
    
     // addToMap() => render single object
-    this.addToMap(this.fullscreen);
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0); // reset translate

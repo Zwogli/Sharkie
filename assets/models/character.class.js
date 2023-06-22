@@ -75,7 +75,6 @@ class Character extends MovableObject{ // extends (dt. erweitert)
     this.SOUND_SWIM.pause();
     /** moving */
     this.moving;
-
     /** All Movesets */
     this.moveset
   }

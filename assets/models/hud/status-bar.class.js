@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class StatusBar extends Hud {
   IMAGES = [
     './assets/img/4. Marcadores/orange/0_  copia.png',
     './assets/img/4. Marcadores/orange/20_ copia 2.png',
@@ -14,8 +14,8 @@ class StatusBar extends DrawableObject {
     this.loadImgs(this.IMAGES);
     this.x = 10;
     this.y = 0;
-    this.width = 150;
-    this.height = 50;
+    // this.width = 150;
+    // this.height = 50;
     this.setPercentage(100)
   }
 

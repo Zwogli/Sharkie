@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject{
   reflectObjects = false;
   energy = 100;3
   lastHit = 0;
+  swimDirection;
 
   isColliding (obj) {
     return  (this.x + this.offsetX + this.width + this.offsetWidth) >= obj.x && this.x <= (obj.x + obj.width) && 
