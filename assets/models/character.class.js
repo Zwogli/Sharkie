@@ -134,7 +134,7 @@ class Character extends MovableObject{ // extends (dt. erweitert)
    * @returns animate() - moving
    */
   limitLevelX(){
-    return this.world.keyboard.LEFT && this.x > 0;
+    return this.world.keyboard.LEFT && this.x > - 720 * 2;
   }
   limitLevelWidth(){
     return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
