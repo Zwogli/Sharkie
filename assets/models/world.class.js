@@ -9,6 +9,8 @@ class World{
   coinBar = new CoinBar();
   fullscreen = new Fullscreen();
   character = new Character();
+
+  canvasHeight = canvas.height;
   
   level = level1;
 
@@ -27,18 +29,21 @@ class World{
 
     this.ctx.translate(this.camera_x, 0); // translate (dt. umsetzen)
     this.addObjectToMap(this.level.backgroundObjects);
-
+    
     /** Fill canvas with objects
-    * addObjectToMap() => (forEach) render array 
+     * addObjectToMap() => (forEach) render array 
     */
+    this.addObjectToMap(this.level.bgBarrier);
     this.addObjectToMap(this.level.bgLights);
     this.addObjectToMap(this.level.enemies);
     
     this.ctx.translate(-this.camera_x, 0); // camera back
+
     //* space for fix objects
     this.addToMap(this.statusBar);
     this.addToMap(this.coinBar);
     this.addToMap(this.fullscreen);
+
     this.ctx.translate(this.camera_x, 0); // camera forward
    
     // addToMap() => render single object
@@ -62,6 +67,7 @@ class World{
       this.addToMap(o);
     });
   }
+
   /** Draw Object
    * 
    * @param {object} movableObject - img, x, y, width, height
